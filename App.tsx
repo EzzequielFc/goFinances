@@ -8,6 +8,8 @@ import "intl/locale-data/jsonp/pt-BR";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
+import { AuthProvider } from "./src/hooks/auth";
+
 import {
   Poppins_400Regular,
   Poppins_500Medium,
@@ -18,6 +20,8 @@ import theme from "./src/global/styles/theme";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { AppRoutes } from "./src/routes/app.routes";
+
+import { SignIn } from "./src/screens/SignIn";
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
@@ -55,7 +59,9 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
-          <AppRoutes />
+          <AuthProvider>
+            <SignIn />
+          </AuthProvider>
         </View>
       </NavigationContainer>
     </ThemeProvider>
